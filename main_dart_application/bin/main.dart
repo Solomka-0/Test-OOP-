@@ -6,6 +6,8 @@ import 'dart:math';
 import 'package:test/test.dart';
 
 import 'index.dart';
+import 'test2/task_5/Converter.dart';
+import 'test2/task_5/Money.dart';
 
 
 void ex1() {
@@ -69,6 +71,16 @@ void ex4() {
   print('$bar');
 }
 
+void ex5() {
+  Money money = Money(Currency.ruble, 1200);
+  print(money);
+
+  Converter converter = Converter();
+
+  money = converter.convertTo(money, Currency.dollar);
+  money = converter.convertTo(money, Currency.euro);
+}
+
 void main() {
-  ex4();
+  ex5();
 }
