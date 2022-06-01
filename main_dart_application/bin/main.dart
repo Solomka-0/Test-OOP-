@@ -5,7 +5,8 @@ import 'dart:io';
 import 'dart:math';
 import 'package:test/test.dart';
 
-import 'test2_ex1.dart';
+import 'index.dart';
+
 
 void ex1() {
   Zhiguli zhiguli = Zhiguli("А123БВ-36", CarType.B, "Белый");
@@ -38,6 +39,36 @@ void ex3() {
   int size = int.parse(wardrobe.getString()!);
 }
 
+void ex4() {
+  late Weight weightTmp;
+  print('\n- У тебя есть гриф, задай ему характеристики:');
+  stdout.write('\nМаксимальный вес (на одну сторону) > ');
+  double maxWeight = double.parse(stdin.readLineSync(encoding: utf8)!);
+  stdout.write('Максимальная ширина одной стороны > ');
+  double maxWidth = double.parse(stdin.readLineSync(encoding: utf8)!);
+  Bar bar = Bar(maxWeight, maxWidth);
+  sleep(Duration(milliseconds: 1000));
+  print('\n- Хм, отлично!');
+  sleep(Duration(milliseconds: 800));
+  print('- А теперь давай навесим на него побольше блинов!');
+  sleep(Duration(milliseconds: 800));
+
+  print('- Начнем с левой стороны грифа. Сколько блинов туда поместим?');
+  int size = int.parse(stdin.readLineSync(encoding: utf8)!);
+  for (int i = 0; i < size; i++) {
+    weightTmp = Weight.console();
+    bar.addWeight(weightTmp, Direction.left);
+  }
+  print('\n- Ладно, теперь правая часть. Сколько блинов туда поместим?');
+  size = int.parse(stdin.readLineSync(encoding: utf8)!);
+  for (int i = 0; i < size; i++) {
+    weightTmp = Weight.console();
+    bar.addWeight(weightTmp, Direction.right);
+  }
+
+  print('$bar');
+}
+
 void main() {
-  ex3();
+  ex4();
 }
