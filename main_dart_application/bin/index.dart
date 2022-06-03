@@ -6,3 +6,5 @@ export 'test2/task_7/Garage.dart';
 
 export 'test2/task_8/Atom.dart';
 export 'test2/task_8/Plus.dart';
+
+export 'test2/task_9/Car2.dart';

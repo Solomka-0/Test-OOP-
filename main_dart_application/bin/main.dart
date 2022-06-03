@@ -102,6 +102,12 @@ void ex8() {
   print(d / (a + b * c));
 }
 
+void ex9() {
+  Car2 car = Car2([Operation.go, Operation.turn, Operation.stop]);
+
+  car.perform();
+}
+
 void main() {
-  ex8();
+  ex9();
 }
