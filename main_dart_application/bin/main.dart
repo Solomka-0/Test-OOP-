@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'dart:math';
+import 'package:complex/complex.dart';
 import 'package:test/test.dart';
 
 import 'index.dart';
 import 'test1.dart';
 import 'test2/task_11/Translator.dart';
+import 'test2/task_13/Solver.dart';
 import 'test2/task_5/Converter.dart';
 import 'test2/task_5/Money.dart';
 
@@ -129,7 +131,6 @@ void ex10() {
 
   print(figures);
 }
-
 void ex11() {
   Translator translator = Translator('59', 10);
   translator.translateTo(2);
@@ -139,6 +140,12 @@ void ex11() {
   translator.translateTo(16);
 }
 
+void ex13() {
+  Solver solver = Solver(1, -2, 17);
+
+  solver.solve();
+}
+
 void main() {
-  ex11();
+  ex13();
 }
