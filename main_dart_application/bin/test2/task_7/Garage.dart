@@ -37,9 +37,9 @@ class Garage<T extends ObjectTransport, P extends ObjectTransport> {
     maxSize = getTSize(T);
     int pSize = getTSize(P);
 
-    for (P element in objects)
-      if (maxSize >= this.objects.length * pSize + pSize)
-        this.objects.add(element);
+    for (P element in objects) {
+      if (maxSize >= this.objects.length * pSize + pSize) this.objects.add(element);
+    }
 
     print(this.objects);
   }

@@ -93,6 +93,15 @@ void ex7() {
   Garage<Car1, Bicycle>(bicycles);
 }
 
+void ex8() {
+  Atom a = Atom('a');
+  Atom b = Atom('b');
+  Atom c = Atom('c');
+  Atom d = Atom('d');
+
+  print(d / (a + b * c));
+}
+
 void main() {
-  ex7();
+  ex8();
 }
