@@ -7,6 +7,7 @@ import 'package:test/test.dart';
 
 import 'index.dart';
 import 'test1.dart';
+import 'test2/task_11/Translator.dart';
 import 'test2/task_5/Converter.dart';
 import 'test2/task_5/Money.dart';
 
@@ -129,6 +130,15 @@ void ex10() {
   print(figures);
 }
 
+void ex11() {
+  Translator translator = Translator('59', 10);
+  translator.translateTo(2);
+  translator.translateTo(4);
+  translator.translateTo(6);
+  translator.translateTo(8);
+  translator.translateTo(16);
+}
+
 void main() {
-  ex10();
+  ex11();
 }
