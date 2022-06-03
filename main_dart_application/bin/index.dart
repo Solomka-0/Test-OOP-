@@ -8,3 +8,8 @@ export 'test2/task_8/Atom.dart';
 export 'test2/task_8/Plus.dart';
 
 export 'test2/task_9/Car2.dart';
+
+export 'test2/task_9/Car2.dart';
+export 'test2/task_9/Car2.dart';
+
+export 'test2/task_10+12/Figure.dart';

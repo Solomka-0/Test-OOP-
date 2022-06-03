@@ -6,6 +6,7 @@ import 'dart:math';
 import 'package:test/test.dart';
 
 import 'index.dart';
+import 'test1.dart';
 import 'test2/task_5/Converter.dart';
 import 'test2/task_5/Money.dart';
 
@@ -108,6 +109,26 @@ void ex9() {
   car.perform();
 }
 
+void ex10() {
+  Rectangle rect = Rectangle()
+    ..setPolygons(10, 20);
+
+  Triangle triangle = Triangle()
+    ..setPolygons(10, 10, 10);
+
+  Circle circle = Circle(10);
+
+  List<Figure> listFigures = [
+    rect,
+    triangle,
+    circle
+  ];
+
+  Figures figures = Figures(listFigures);
+
+  print(figures);
+}
+
 void main() {
-  ex9();
+  ex10();
 }
