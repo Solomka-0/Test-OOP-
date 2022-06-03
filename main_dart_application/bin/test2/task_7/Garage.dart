@@ -1,5 +1,3 @@
-import 'dart:html';
-
 enum Object {
   car,
   bicycle,
@@ -11,7 +9,7 @@ class ObjectTransport {
   static late int size;
 }
 
-class Car implements ObjectTransport {
+class Car1 implements ObjectTransport {
   @override
   static int size = 8;
 }
@@ -31,51 +29,33 @@ class BabyStroller implements ObjectTransport {
   static int size = 1;
 }
 
-class Garage<T extends ObjectTransport> {
-  late int size;
-  late List<T> objects;
+class Garage<T extends ObjectTransport, P extends ObjectTransport> {
+  late int maxSize;
+  late List<P> objects = [];
 
-  Garage(List<T> objects) {
-    objects.runtimeType;
-    switch(T) {
-      case Car:
-        size = Car.size;
-        break;
-      case Bicycle:
-        size = Bicycle.size;
-        break;
-      case Bike:
-        size = Bike.size;
-        break;
-      case BabyStroller:
-        size = BabyStroller.size;
-        break;
-    }
+  Garage(List<P> objects) {
+    maxSize = getTSize(T);
+    int pSize = getTSize(P);
 
-    for (T element in objects) {
-      if (objects.length < size + element.size)
-    }
+    for (P element in objects)
+      if (maxSize >= this.objects.length * pSize + pSize)
+        this.objects.add(element);
+
+    print(this.objects);
   }
 
   int getTSize(Type type) {
-    Map<ObjectTransport, int> sizes = {
-      Car: Car.size,
-    };
-
     switch(type) {
-      case Car:
-        size = Car.size;
-        break;
+      case Car1:
+        return Car1.size;
       case Bicycle:
-        size = Bicycle.size;
-        break;
+        return Bicycle.size;
       case Bike:
-        size = Bike.size;
-        break;
+        return Bike.size;
       case BabyStroller:
-        size = BabyStroller.size;
-        break;
+        return BabyStroller.size;
+      default:
+        return 0;
     }
-    return 0;
   }
 }

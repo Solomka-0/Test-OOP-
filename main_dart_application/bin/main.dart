@@ -81,6 +81,18 @@ void ex5() {
   money = converter.convertTo(money, Currency.euro);
 }
 
+void ex7() {
+  List<Bicycle> bicycles = [
+    Bicycle(),
+    Bicycle(),
+    Bicycle(),
+    Bicycle(),
+    Bicycle()
+  ];
+
+  Garage<Car1, Bicycle>(bicycles);
+}
+
 void main() {
-  ex5();
+  ex7();
 }
