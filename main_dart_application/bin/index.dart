@@ -17,3 +17,6 @@ export 'test2/task_10+12/Figure.dart';
 export 'test2/task_11/Translator.dart';
 
 export 'test2/task_14/GCDFinder.dart';
+
+export 'test2/task_15/Cutlery.dart';
+export 'test2/task_15/Table.dart';

@@ -153,6 +153,16 @@ void ex14() {
   print(GCDFinder.findGCD(9, 9));
 }
 
+void ex15() {
+  Table table = Table();
+  Fork fork = Fork('моя');
+  Spoon spoon = Spoon('серебрянная');
+  Knife knife = Knife('обычный');
+
+  table.setList([fork, spoon, knife]);
+  print(table);
+}
+
 void main() {
-  ex14();
+  ex15();
 }
