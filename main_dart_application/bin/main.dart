@@ -146,6 +146,13 @@ void ex13() {
   solver.solve();
 }
 
+void ex14() {
+  print(GCDFinder.findGCD(64, 48));
+  print(GCDFinder.findGCD(15, 5));
+  print(GCDFinder.findGCD(3, 9));
+  print(GCDFinder.findGCD(9, 9));
+}
+
 void main() {
-  ex13();
+  ex14();
 }

@@ -15,3 +15,5 @@ export 'test2/task_9/Car2.dart';
 export 'test2/task_10+12/Figure.dart';
 
 export 'test2/task_11/Translator.dart';
+
+export 'test2/task_14/GCDFinder.dart';
