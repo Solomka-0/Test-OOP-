@@ -42,6 +42,18 @@ void task_2() {
   }
 }
 
+void task_3() {
+  Overload a = Overload(4);
+  Overload b = Overload(0);
+
+
+  try {
+    print(a * b);
+  } on MultiplicationByZeroException {
+    print(a * Overload(2));
+  }
+}
+
 void main() {
-  task_2();
+  task_3();
 }
