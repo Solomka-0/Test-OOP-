@@ -54,6 +54,18 @@ void task_3() {
   }
 }
 
+void task_4() {
+  List<int> list = [1, 2, 3, 4];
+
+  try {
+    for (int i = 0; i <= 5; i++) {
+      print(list[i]);
+    }
+  } on RangeError {
+    print('Попытка обратиться к несуществующему элементу!');
+  }
+}
+
 void main() {
-  task_3();
+  task_4();
 }
