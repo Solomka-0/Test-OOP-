@@ -16,6 +16,17 @@ void task_1_2() {
   print(myFile.readAsStringSync());
 }
 
+void task_3() {
+  Car car = Car(States.stop);
+
+  car.changeState(States.acceleration);
+  car.changeState(States.go_forward);
+  car.changeState(States.to_right);
+  car.changeState(States.stop);
+
+  print(File('car.log').readAsStringSync());
+}
+
 void main() async{
-  task_1_2();
+  task_3();
 }
