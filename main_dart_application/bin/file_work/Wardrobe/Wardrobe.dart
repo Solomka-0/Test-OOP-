@@ -7,7 +7,9 @@ class Thing {
 
   Map<String, dynamic> toJson() {
     return {
-      'name' : {'weight' : weight, 'size' : size}
+      'name' : name,
+      'weight' : weight,
+      'size' : size
     };
   }
 }
