@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'index.dart';
 
-void task_1() {
+void task_1_2() {
   var myFile = File('wardrobe.json');
   Thing thing1 = Thing('Рубашка', 150, 1);
   Thing thing2 = Thing('Кеды', 300, 1);
@@ -17,5 +17,5 @@ void task_1() {
 }
 
 void main() async{
-  task_1();
+  task_1_2();
 }
