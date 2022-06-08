@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'Logger.dart';
 import 'index.dart';
 
 void task_1_2() {
@@ -27,6 +28,18 @@ void task_3() {
   print(File('car.log').readAsStringSync());
 }
 
+void task_4() {
+  Car car = Car(States.stop);
+
+  car.setLogger(TXTLogger('car'));
+  car.changeState(States.acceleration);
+  car.setLogger(JSONLogger('car'));
+  car.changeState(States.go_forward);
+
+  car.changeState(States.to_right);
+  car.changeState(States.stop);
+}
+
 void main() async{
-  task_3();
+  task_4();
 }

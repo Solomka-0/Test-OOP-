@@ -1,27 +1,42 @@
 import 'dart:io';
 
+import 'package:json_annotation/json_annotation.dart';
+
+import '../Logger.dart';
+
 enum States {
   stop,
   go_forward,
   go_backward,
   to_left,
   to_right,
-  acceleration
+  acceleration,
+  none
 }
 
 class Car {
-  States state;
+  @JsonKey(unknownEnumValue: States.none)
+  States lastState = States.none;
+  @JsonKey(unknownEnumValue: States.none)
+  States curState;
+  BaseLogger logger = BaseLogger('Car');
 
-  Car(this.state);
+  Car(this.curState);
 
   void changeState(States newState) {
-    logging(state, newState);
-    state = newState;
+    logger.logging(this);
+    lastState = curState;
+    curState = newState;
   }
 
-  void logging(States state, States newState) {
-    File myFile = File('car.log');
+  void setLogger(BaseLogger logger) {
+    this.logger = logger;
+  }
 
-    myFile.writeAsStringSync('${DateTime.now()}\n$state\n$newState\n\n', mode: FileMode.append);
+  Map<String, dynamic> toJson() {
+    return {
+      'lastState' : lastState.index.toString(),
+      'curState' : curState.index.toString(),
+    };
   }
 }
