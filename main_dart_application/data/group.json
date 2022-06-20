@@ -1,0 +1,31 @@
+{
+ "groupName": "1-МД-66",
+ "course": 1,
+ "students": [
+  {
+   "name": "Alex",
+   "age": 19,
+   "course": 1,
+   "single": false,
+   "description": [
+    "Мечтатель",
+    "Ленив",
+    "Студент",
+    "Постоянно жалуется на жизнь"
+   ]
+  },
+  {
+   "name": "Maxim",
+   "age": 22,
+   "course": 1,
+   "single": true,
+   "description": [
+    "Мечтатель",
+    "Ленив",
+    "Студент",
+    "Девиз: всё нормально!"
+   ]
+  }
+ ],
+ "amountStudents": 2
+}

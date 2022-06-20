@@ -30,33 +30,37 @@ class Book {
 
   Map<String, dynamic> toJson() => {
     'title' : title,
-    'authorsName' : authorsName,
+    'authorName' : authorsName,
     'authorFirstName' : authorsFirstName,
     'description' : description
   };
+
+  static Book fromJson(Map<String, dynamic> map) =>
+      Book(map['title'],
+          map['authorName'],
+          map['authorFirstName'],
+          map['description']);
 }
 
 class IsolatesMessage<T> {
   final SendPort sender;
   final T message;
-  IsolatesMessage({
-    required this.sender,
-    required this.message,
-  });
+  IsolatesMessage({required this.sender, required this.message});
 }
+
 late SendPort isolateSendPort;
 late Isolate isolate;
-Future<void> createIsolate() async {
+
+Future<void> createFileIsolate() async {
   var receivePort = ReceivePort();
   isolate = await Isolate.spawn(
-    IsolateFunction,
+    IsolateFileFunction,
     receivePort.sendPort,
   );
   isolateSendPort = await receivePort.first;
 }
 
-void IsolateFunction(SendPort sendPort){
-  var receivePort = ReceivePort();
+void IsolateFileFunction(SendPort sendPort){
   List<Book> books = [
     Book('Мастер и маргарита', 'Михаил', 'Булгаков', '''Роман Михаила Афанасьевича Булгакова, работа над которым началась в декабре 1928 года и продолжалась вплоть до смерти писателя. 
   Роман относится к незавершённым произведениям; редактирование и сведение воедино черновых записей осуществляла после смерти мужа вдова писателя - Елена Сергеевна. 
@@ -66,10 +70,24 @@ void IsolateFunction(SendPort sendPort){
     Book('1984', 'Джордж', 'Оруэлл', 'Роман-антиутопия Джорджа Оруэлла, изданный в 1949 году. Как отмечает членкор РАН М. Ф. Черныш, это самое главное и последнее произведение писателя.'),
     Book('451 градус по Фаренгейту', 'Рей', 'Брэдберри', 'Научно-фантастический роман-антиутопия Рэя Брэдбери, изданный в 1953 году. Роман описывает американское общество близкого будущего, в котором \nкниги находятся под запретом; «пожарные», к числу которых принадлежит и главный герой Гай Монтэг, сжигают')
   ];
+  var receivePort = ReceivePort();
   var myFile = File('books.json');
-  var encoder = JsonEncoder.withIndent(' ');
-  myFile.writeAsStringSync(encoder.convert(books));
-  print(myFile.readAsStringSync());
+
+  void writeFile() {
+    var encoder = JsonEncoder.withIndent(' ');
+    myFile.writeAsStringSync(encoder.convert(books));
+  }
+
+  void readFile() {
+    List<Book> receiveBooks = [];
+    var a = json.decode(myFile.readAsStringSync());
+    for (Map<String, dynamic> map in a) { receiveBooks.add(Book.fromJson(map)); }
+    print(receiveBooks);
+  }
+
+  writeFile();
+  readFile();
+
   sendPort.send(receivePort.sendPort);
 }
 
@@ -82,10 +100,45 @@ void task_1_2() {
 
 void task_3() async {
   print('Main');
-  await createIsolate();
+  await createFileIsolate();
   print('Next');
 }
 
-void main() {
-  task_3();
+List<int> getFibonacci(int number) {
+  List<int> fibonacciList = [0, 1];
+  while (fibonacciList.length < number)
+    fibonacciList.add(fibonacciList[fibonacciList.length - 2] + fibonacciList[fibonacciList.length - 1]);
+
+  return fibonacciList;
+}
+
+void fibonacciNumbers() async {
+  var list = await getFibonacci(40);
+  print("Асинхронная функция:\n$list");
+}
+
+Future<void> createIsolate() async {
+  var receivePort = ReceivePort();
+  isolate = await Isolate.spawn(
+    IsolateFunction,
+    receivePort.sendPort,
+  );
+  isolateSendPort = await receivePort.first;
+}
+
+void IsolateFunction(SendPort sendPort) {
+  var receivePort = ReceivePort();
+
+  var list = getFibonacci(40);
+  print("Изолят:\n$list");
+
+  sendPort.send(receivePort.sendPort);
+}
+
+void main() async{
+  var recievePort = ReceivePort();
+  print('start');
+  fibonacciNumbers();
+  createIsolate();
+  print('end');
 }
