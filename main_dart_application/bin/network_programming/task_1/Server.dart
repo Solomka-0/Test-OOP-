@@ -16,7 +16,6 @@ void main() async{
       ];
 
       var encoder = JsonEncoder.withIndent(' ');
-      print(encoder);
       socket.write(encoder.convert(students));
 
       socket.cast<List<int>>().transform(utf8.decoder).listen((event) {
