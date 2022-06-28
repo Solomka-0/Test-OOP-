@@ -4,14 +4,15 @@ import 'dart:io';
 String toJson(Map<String, dynamic> message) => JsonEncoder.withIndent(' ').convert(message);
 
 void main() async{
-  await Socket.connect('127.0.0.1', 8081).then((socket) {
+  int last_message = 0;
+  await Socket.connect('127.0.0.1', 8080).then((socket) {
     // Шаблон сообщения о пользователе
     Map<String, dynamic> user_pattern = {
       'code': 200,
       'user': {
         'username': 'Пользователь ${socket.port}',
         'address': socket.address.address,
-        'port': socket.port}
+        'port': socket.port},
     };
 
     // Шаблон текстового сообщения
@@ -20,6 +21,7 @@ void main() async{
       'author': user_pattern['user'],
       'message_text':  'null',
       'id': null,
+      'recipients': []
     };
 
     // Отправка сведений о пользователе (дает понять, что пользователь подключился)
@@ -28,7 +30,6 @@ void main() async{
     socket.cast<List<int>>().transform(utf8.decoder).listen((event) {
       // Перевод ответа в стандартный формат (Map / JSON)
       var response = jsonDecode(event);
-      print('Код ответа ${response['code']}');
 
       // Вывод истории беседы
       if (response['history'] != [] && response['history'] != null && response['history'].length > 0)

@@ -1,16 +1,22 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-Future<String?> getData() async {
-  sleep(Duration(seconds: 6));
-  print('i dont know how');
-  return 'text';
-}
 
-void main() async{
-  String? text = await getData().timeout(Duration(seconds: 5), onTimeout: () {
-    print('nice');
-    return null;
+void main() async {
+  StreamController<List<int>> consumer = StreamController<List<int>>();
+
+  StreamController<StreamController<dynamic>> controller = StreamController();
+
+  consumer.stream.cast<List<int>>().transform(utf8.decoder).listen((event) {
+    controller.add(consumer);
   });
-  print(text);
+
+  controller.stream.listen((event) {
+    print(event);
+  });
+
+  var a = await stdin.pipe(consumer);
+
+  print(a);
 }
