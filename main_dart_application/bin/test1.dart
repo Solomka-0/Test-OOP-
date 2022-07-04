@@ -90,13 +90,10 @@ void ex5() {
   print('\b\b]');
 }
 
-void ex6() {
-  stdout.write('a: ');
-  int a = getNumber();
-  stdout.write('b: ');
-  int b = getNumber();
-  stdout.write('c: ');
-  int c = getNumber();
+List<int?> ex6([dynamic a, dynamic b, dynamic c]) {
+  if (a == null || b == null || c == null) {
+    return [null, null];
+  }
 
   int min, max;
 
@@ -111,20 +108,23 @@ void ex6() {
   else if (b >= a && b >= c) {
     max = b;
     if (a <= c)
-      min = b;
+      min = a;
     else
       min = c;
   }
   else {
     max = c;
     if (a <= b)
-      min = b;
+      min = a;
     else
-      min = c;
+      min = b;
   }
 
-  print('Минимальный: $min');
-  print('Максимальный: $max');
+
+  // print('Минимальный: $min');
+  // print('Максимальный: $max');
+
+  return [min, max];
 }
 
 void ex7(List<int> list) {
